@@ -7,24 +7,12 @@
 ###############################################################################
 
 # Imports
-from celery import Celery
-from fastapi import FastAPI
+from project import create_app
+from project.data import db_session
 
-app = FastAPI()
-
-celery = Celery(
-    __name__,
-    broker="redis://127.0.0.1:6379/0",
-    backend="redis://127.0.0.1:6379/0",
-)
+app = create_app()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello, World"}
-
-@celery.task
-def divide(x, y):
-    import time
-    time.sleep(5)
-    return x/y
+@app.on_event("startup")
+async def setup_db():
+    await db_session.global_init()
