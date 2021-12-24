@@ -1,8 +1,10 @@
 aiosqlite==0.17.0
 alembic==1.6.5
+asyncpg==0.25.0
 celery==5.1.2
 fastapi==0.66.0
 flower==1.0.0
+psycopg2-binary==2.9.1
 redis==3.5.3
 sqlalchemy==1.4.20
 uvicorn[standard]==0.14.0
