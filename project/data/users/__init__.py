@@ -21,4 +21,4 @@ async def create_user(username: str, email: str):
     return user
 
 
-from . import user_model
+from . import user_model, tasks
