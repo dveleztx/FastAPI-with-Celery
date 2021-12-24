@@ -11,6 +11,7 @@ from project import create_app
 from project.data import db_session
 
 app = create_app()
+celery = app.celery_app
 
 
 @app.on_event("startup")

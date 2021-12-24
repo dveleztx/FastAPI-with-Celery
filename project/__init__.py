@@ -1,9 +1,13 @@
 from fastapi import FastAPI
-from project.data import db_session
+
+from project.celery_utils import create_celery
 
 
 def create_app() -> FastAPI:
     app = FastAPI()
+
+    # do this before loading routes
+    app.celery_app = create_celery()
 
     from project.data.users import users_router
     app.include_router(users_router)
