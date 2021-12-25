@@ -3,4 +3,4 @@
 set -o errexit
 set -o nounset
 
-celery -A main.celery worker --loglevel=info
+python -c "from main import celery_worker; celery_worker()"
